@@ -44,23 +44,24 @@ loginctl suspend
 But a manual installation is pretty straightforward:
 1) Clone this repo
 2) In the repo root, run `cargo build`
-3) On the output binary, perform the following commands:
-3a) `chown root:root power-state` (requires elevation)
-3b) `chmod 4755 power-state` (requires elevation)
+3) On the output binary, perform the following commands:  
+    3a) `chown root:root power-state` (requires elevation)  
+    3b) `chmod 4755 power-state` (requires elevation)  
 4) Place the binary in your binary location of choice, I recommend `/usr/local/bin`
 `cp power-state /usr/local/bin/power-state` (requires elevation, probably)
 5) Copy the pam service to the respective directory
 `cp pam.d/power-state /etc/pam.d/power-state`
-6) Ensure that your user is authenticated, perform the following:
-6a) `groupadd power` (if the group does not already exist, requires elevation)
-6b) `usermod -aG power <your user>` (requires elevation)
+6) Ensure that your user is authenticated, perform the following:  
+    6a) `groupadd power` (if the group does not already exist, requires elevation)  
+    6b) `usermod -aG power <your user>` (requires elevation)  
 
 #### Dependencies
 
 **This is also a WIP! I still need to iron out exactly what all is required to build this. YMMV!**
 
 - Rust / Cargo (I know fedora is weird and also needs `cargo-devel`)
-- LLVM (sometimes included with the above, maybe not always though)
+- LLVM (sometimes included with the above, maybe not always though; alpine wanted `llvm-dev`)
+- Clang (Specifically something that provides libclang.so; alpine wanted `clang-libclang`)
 - PAM (many distros also probably need something like a `pam-devel`)
 
 ### Contributing
