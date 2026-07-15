@@ -1,0 +1,3 @@
+auth       sufficient     pam_succeed_if.so uid eq 0 quiet
+auth       required       pam_succeed_if.so user ingroup power quiet
+account    required       pam_permit.so
